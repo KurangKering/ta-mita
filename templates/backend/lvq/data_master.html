@@ -1,0 +1,102 @@
+{% extends "backend/base.html" %}
+{% load static %}
+{% block content %}
+<div class="nk-block-head nk-block-head-sm">
+	<div class="nk-block-between">
+		<div class="nk-block-head-content">
+			<h3 class="nk-block-title page-title">Data Master</h3>
+			<div class="nk-block-des text-soft">
+				<p>Dataset bersih</p>
+			</div>
+		</div>
+		<div class="nk-block-head-content">
+			<div class="toggle-wrap nk-block-tools-toggle">
+				<a href="{% static 'dash/#' %}" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+				<div class="toggle-expand-content" data-content="pageMenu">
+					<ul class="nk-block-tools g-3">
+						
+						<li class="nk-block-tools-opt"><a href="{% url 'lvq/tambah_data_master' %}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Tambah Data</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="nk-block">
+	<div class="card card-preview">
+		<div class="card-inner">
+			<table class="nowrap table" id="table-master" >
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>AGE</th>
+						<th>SEX</th>
+						<th>STEROID</th>
+						<th>ANTIVIRALS</th>
+						<th>FATIGUE</th>
+						<th>MALAISE</th>
+						<th>ANOREXIA</th>
+						<th>LIVER BIG</th>
+						<th>LIVER FIRM</th>
+						<th>SPLEEN PALPABLE</th>
+						<th>SPIDERS</th>
+						<th>ASCITES</th>
+						<th>VARICES</th>
+						<th>BILIRUBIN</th>
+						<th>ALK POSPHATE</th>
+						<th>SGOT</th>
+						<th>ALBUMIN</th>
+						<th>PROTIME</th>
+						<th>HISTOLOGY</th>
+						<th>CLASS</th>
+						<th>ACTION</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for data in dataset %}
+					<tr>
+						<td>{{ data.id }}</td>
+						<td>{{ data.age }}</td>
+						<td>{{ data.sex }}</td>
+						<td>{{ data.steroid }}</td>
+						<td>{{ data.antivirals }}</td>
+						<td>{{ data.fatigue }}</td>
+						<td>{{ data.malaise }}</td>
+						<td>{{ data.anorexia }}</td>
+						<td>{{ data.liver_big }}</td>
+						<td>{{ data.liver_firm }}</td>
+						<td>{{ data.spleen_palpable }}</td>
+						<td>{{ data.spiders }}</td>
+						<td>{{ data.ascites }}</td>
+						<td>{{ data.varices }}</td>
+						<td>{{ data.bilirubin }}</td>
+						<td>{{ data.alk_posphate }}</td>
+						<td>{{ data.sgot }}</td>
+						<td>{{ data.albumin }}</td>
+						<td>{{ data.protime }}</td>
+						<td>{{ data.histology }}</td>
+						<td>{{ data.kelas }}</td>
+						<td>Edit | Hapus</td>
+					</tr>
+					{% endfor %}
+
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+
+
+	var $dTableMaster = makeDataTable('#table-master', {
+		"scrollX": true
+	});
+
+
+
+</script>
+{% endblock js %}

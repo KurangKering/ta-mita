@@ -1,0 +1,134 @@
+{% extends "backend/base.html" %}
+{% load static %}
+{% block content %}
+<div class="nk-block-head nk-block-head-sm">
+	<div class="nk-block-between">
+		<div class="nk-block-head-content">
+			<h3 class="nk-block-title page-title">Preprocessing data</h3>
+			<div class="nk-block-des text-soft">
+				<p>Proses preprocessing</p>
+			</div>
+		</div>
+		<div class="nk-block-head-content">
+			<div class="toggle-wrap nk-block-tools-toggle">
+				<a href="{% static 'dash/#' %}" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+				<div class="toggle-expand-content" data-content="pageMenu">
+					<ul class="nk-block-tools g-3">
+						
+						<li class="nk-block-tools-opt"><a href="#" id="btn-hapus-data-normalisasi" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Hapus seluruh data</span></a></li>
+						<li class="nk-block-tools-opt"><a href="#" id="btn-mulai-preprocessing" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Mulai Preprocessing</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="nk-block">
+	<div class="card card-preview">
+		<div class="card-inner">
+			<table class="nowrap table" id="table-preprocessing" >
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>AGE</th>
+						<th>SEX</th>
+						<th>STEROID</th>
+						<th>ANTIVIRALS</th>
+						<th>FATIGUE</th>
+						<th>MALAISE</th>
+						<th>ANOREXIA</th>
+						<th>LIVER BIG</th>
+						<th>LIVER FIRM</th>
+						<th>SPLEEN PALPABLE</th>
+						<th>SPIDERS</th>
+						<th>ASCITES</th>
+						<th>VARICES</th>
+						<th>BILIRUBIN</th>
+						<th>ALK POSPHATE</th>
+						<th>SGOT</th>
+						<th>ALBUMIN</th>
+						<th>PROTIME</th>
+						<th>HISTOLOGY</th>
+						<th>CLASS</th>
+
+					</tr>
+				</thead>
+				
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+
+
+	var $dTablePreprocessing = makeDataTable('#table-preprocessing', {
+		"ajax": {
+            "url": '{% url "lvq/json_data_preprocessing" %}',
+            "dataSrc": "dataset"
+        },
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "data": "id" },
+		{ "data": "age" },
+		{ "data": "sex" },
+		{ "data": "steroid" },
+		{ "data": "antivirals" },
+		{ "data": "fatigue" },
+		{ "data": "malaise" },
+		{ "data": "anorexia" },
+		{ "data": "liver_big" },
+		{ "data": "liver_firm" },
+		{ "data": "spleen_palpable" },
+		{ "data": "spiders" },
+		{ "data": "ascites" },
+		{ "data": "varices" },
+		{ "data": "bilirubin" },
+		{ "data": "alk_posphate" },
+		{ "data": "sgot" },
+		{ "data": "albumin" },
+		{ "data": "protime" },
+		{ "data": "histology" },
+		{ "data": "kelas" },
+		],
+		pageLength: 5,
+	});
+
+
+	$("#btn-mulai-preprocessing").click(function(event) {
+		var URL = "{% url 'lvq/proses_preprocessing' %}";
+		axios.get(URL)
+		.then((resp) => {
+			response = resp.data;
+			console.log(response.success);
+			if (response.success == 1) {
+				alert('preprocessing berhasil');
+				$dTablePreprocessing.clear();
+				$dTablePreprocessing.rows.add(response.df_preprocessing);
+				$dTablePreprocessing.draw();
+			}
+
+		})
+	});
+
+	$("#btn-hapus-data-normalisasi").click(function(event) {
+		var URL = "{% url 'lvq/proses_hapus_data_preprocessing' %}";
+		axios.get(URL)
+		.then((resp) => {
+			response = resp.data;
+			console.log(response.success);
+			if (response.success == 1) {
+				alert('data berhasil dihapus');
+				$dTablePreprocessing.clear();
+				$dTablePreprocessing.draw();
+
+			}
+
+		})
+	});
+
+
+</script>
+{% endblock js %}
