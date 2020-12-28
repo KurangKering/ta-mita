@@ -10,6 +10,8 @@ import pandas as pd
 from .models import Dataset, DatasetPreprocessing
 from django.db import connection
 from .libraries.preprocessing import normalisasi
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 np.random.seed(0)
 
@@ -87,6 +89,18 @@ def proses_tambah_data_master(request):
         'success': success,
     }
     return JsonResponse(context, safe=False)
+
+
+@csrf_exempt
+def proses_import_data_master(request):
+    raw_body = request.body.decode('utf-8')
+    data_post = json.loads(raw_body)
+
+    import pdb; pdb.set_trace()
+    context = {
+        'success': 1
+    }
+    return JsonResponse(context, safe=False);
 
 def edit_data_master(request, id_data=None):
 

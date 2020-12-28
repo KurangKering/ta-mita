@@ -9,7 +9,7 @@
 				<p></p>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 <div class="nk-block">
@@ -22,8 +22,8 @@
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="tab" href="#tabExcel"><em class="icon ni ni-lock-alt"></em><span>Input Excel</span></a>
 				</li>
-				
-				
+
+
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tabManual">
@@ -197,50 +197,39 @@
 					</form>
 				</div>
 				<div class="tab-pane " id="tabExcel">
-					<input type="file">
+					<input type="file" name="input-file-excel" id="input-file-excel" >
+					<button type="button" class="btn btn-primary" id="btn-import">Import Data</button>
+
 
 					<div>
-						<table class=" nowrap table">
+						<table class="nowrap table" id="table-import" >
 							<thead>
 								<tr>
-									<th>ID</th>
 									<th>AGE</th>
 									<th>SEX</th>
 									<th>STEROID</th>
 									<th>ANTIVIRALS</th>
 									<th>FATIGUE</th>
-									<th>MALAISE</th>
-									<th>ANOREXIA</th>
-									<th>LIVER BIG</th>
-									<th>LIVER FIRM</th>
-									<th>SPLEEN PALPABLE</th>
-									<th>SPIDERS</th>
-									<th>ASCITES</th>
-									<th>VARICES</th>
-									<th>BILIRUBIN</th>
-									<th>ALK POSPHATE</th>
-									<th>SGOT</th>
-									<th>ALBUMIN</th>
-									<th>PROTIME</th>
-									<th>HISTOLOGY</th>
-									<th>CLASS</th>
-									<th>ACTION</th>
-
 								</tr>
 							</thead>
+
 						</table>
 					</div>
 
 				</div>
-				
 
-				
+
+
 			</div>
 		</div>
 	</div>
 </div>
 
 {% endblock content %}
+{% block export-js %}
+<script src="{% static 'plugins/sheetjs/dist/xlsx.full.min.js' %}"></script>
+
+{% endblock export-js %}
 {% block js %}
 <script>
 
@@ -261,6 +250,52 @@
 
 		})
 
+	});
+
+	var json_object = '';
+	$("#btn-import").click(function(event) {
+		var selectedFile = $("#input-file-excel")[0].files[0];
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var data = event.target.result;
+			var workbook = XLSX.read(data, {
+				type: 'binary'
+			});
+
+			workbook.SheetNames.forEach(function(sheetName) {
+
+				var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+				json_object  = (XL_row_object);
+			})
+			var URL = '{% url "lvq/proses_import_data_master" %}';
+			axios.post(URL, json_object)
+			.then((res) => {
+				data = res.data;
+
+
+			});
+			$dTableImport.clear();
+			$dTableImport.rows.add(json_object);
+			$dTableImport.draw();
+
+		};
+		reader.onerror = function(event) {
+			console.error("File tidak bisa diimport Code " + event.target.error.code);
+		};
+		reader.readAsBinaryString(selectedFile);
+
+	});
+
+	var $dTableImport = makeDataTable('#table-import', {
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "data": "First Name" },
+		{ "data": "Last Name" },
+		{ "data": "sex" },
+		{ "data": "age" },
+		{ "data": "hyn" },
+		],
 	});
 
 </script>

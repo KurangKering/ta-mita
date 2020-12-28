@@ -191,7 +191,9 @@
 	<script src="{% static 'plugins/axios/axios.min.js' %}"></script>
 	<script  src="{% static 'plugins/spinjs/spin.umd.js' %}"></script>
 	<script src="{% static 'plugins/qs.js' %}"></script>
+	{% block export-js %}
 
+	{% endblock export-js %}
 
 	<script>
 
@@ -285,9 +287,7 @@
  	return $(elm).DataTable(attr);
  }
 </script>
-{% block export-js %}
 
-{% endblock export-js %}
 
 
 {% block js %}

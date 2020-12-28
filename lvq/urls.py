@@ -7,6 +7,7 @@ urlpatterns = [
     path('tambah_data_master', views.tambah_data_master, name='lvq/tambah_data_master'),
     path('json_data_master', views.json_data_master, name='lvq/json_data_master'),
     path('proses_tambah_data_master', views.proses_tambah_data_master, name='lvq/proses_tambah_data_master'),
+    path('proses_import_data_master', views.proses_import_data_master, name='lvq/proses_import_data_master'),
     path('edit_data_master/<id_data>', views.edit_data_master, name='lvq/edit_data_master'),
     path('proses_edit_data_master', views.proses_edit_data_master, name='lvq/proses_edit_data_master'),
     path('proses_hapus_data_master', views.proses_hapus_data_master, name='lvq/proses_hapus_data_master'),
