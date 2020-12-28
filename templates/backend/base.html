@@ -12,6 +12,8 @@
 	<link rel="shortcut icon" href="{% static 'dash/./images/favicon.png' %}">
 	<!-- Page Title  -->
 	<title>LVQ</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/spinjs/spin.css' %}">
+
 	{% block export-css %}
 
 	{% endblock export-css %}
@@ -32,9 +34,9 @@
 			<div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
 				<div class="nk-sidebar-element nk-sidebar-head">
 					<div class="nk-sidebar-brand">
-						<a href="{% static 'dash/html/index.html' %}" class="logo-link nk-sidebar-logo">
-							<img class="logo-light logo-img" src="{% static 'dash/./images/logo.png' %}" srcset="./images/logo2x.png 2x" alt="logo">
-							<img class="logo-dark logo-img" src="{% static 'dash/./images/logo-dark.png' %}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+						<a href="{% url 'index' %}" class="logo-link nk-sidebar-logo">
+							LVQ
+							
 						</a>
 					</div>
 					<div class="nk-menu-trigger mr-n2">
@@ -64,9 +66,9 @@
 									</a>
 								</li>
 								<li class="nk-menu-item">
-									<a href="{% url 'lvq/pelatihan' %}" class="nk-menu-link">
+									<a href="{% url 'lvq/perbandingan_lvq' %}" class="nk-menu-link">
 										<span class="nk-menu-icon"><em class="icon ni ni-circle"></em></span>
-										<span class="nk-menu-text">LVQ</span>
+										<span class="nk-menu-text">Perbandingan LVQ</span>
 									</a>
 								</li>
 							</ul><!-- .nk-menu -->
@@ -90,7 +92,7 @@
 									<img class="logo-dark logo-img" src="{% static 'dash/./images/logo-dark.png' %}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
 								</a>
 							</div><!-- .nk-header-brand -->
-							<div class="nk-header-news d-none d-xl-block">
+							<!-- <div class="nk-header-news d-none d-xl-block">
 								<div class="nk-news-list">
 									<a class="nk-news-item" href="#">
 										<div class="nk-news-icon">
@@ -102,9 +104,9 @@
 										</div>
 									</a>
 								</div>
-							</div><!-- .nk-header-news -->
+							</div> --><!-- .nk-header-news -->
 							<div class="nk-header-tools">
-								<ul class="nk-quick-nav">
+								<!-- <ul class="nk-quick-nav">
 									<li class="dropdown user-dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 											<div class="user-toggle">
@@ -143,9 +145,10 @@
 												</ul>
 											</div>
 										</div>
-									</li><!-- .dropdown -->
-									<!-- .dropdown -->
-								</ul><!-- .nk-quick-nav -->
+									</li>
+									
+								</ul> -->
+								<!-- .nk-quick-nav -->
 							</div><!-- .nk-header-tools -->
 						</div><!-- .nk-header-wrap -->
 					</div><!-- .container-fliud -->
@@ -184,53 +187,112 @@
 	<!-- JavaScript -->
 	<script src="{% static 'dash/./assets/js/bundle.js' %}"></script>
 	<script src="{% static 'dash/./assets/js/scripts.js' %}"></script>
+	<script src="{% static 'dash/./assets/js/example-chart.js' %}"></script>
 	<script src="{% static 'plugins/axios/axios.min.js' %}"></script>
+	<script  src="{% static 'plugins/spinjs/spin.umd.js' %}"></script>
+	<script src="{% static 'plugins/qs.js' %}"></script>
+
+
 	<script>
-		function extend(obj, ext) {
-			Object.keys(ext).forEach(function (key) {
-				obj[key] = ext[key];
-			});
-			return obj;
-		} 
-		function makeDataTable(elm, opt) {
-			var auto_responsive = $(elm).data('auto-responsive');
-			var dom_normal = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
-			var dom_separate = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
-			var dom = $(elm).hasClass('is-separate') ? dom_separate : dom_normal;
-			var def = {
-				responsive: true,
-				autoWidth: false,
-				dom: dom,
-				language: {
-					search: "",
-					searchPlaceholder: "Type in to Search",
-					lengthMenu: "<span class='d-none d-sm-inline-block'>Show</span><div class='form-control-select'> _MENU_ </div>",
-					info: "_START_ -_END_ of _TOTAL_",
-					infoEmpty: "No records found",
-					infoFiltered: "( Total _MAX_  )",
-					paginate: {
-						"first": "First",
-						"last": "Last",
-						"next": "Next",
-						"previous": "Prev"
-					}
-				}
-			},
-			attr = opt ? extend(def, opt) : def;
-			attr = auto_responsive === false ? extend(attr, {
-				responsive: false
-			}) : attr;
-			return $(elm).DataTable(attr);
-		}
-	</script>
-	{% block export-js %}
 
-	{% endblock export-js %}
+		function showSpinner() {
+     // Initialize
+     if ($('.kintone-spinner').length == 0) {
+         // Create elements for the spinner and the background of the spinner
+         var spin_div = $('<div id ="kintone-spin" class="kintone-spinner"></div>');
+         var spin_bg_div = $('<div id ="kintone-spin-bg" class="kintone-spinner"></div>');
+
+         // Append spinner to the body
+         $(document.body).append(spin_div, spin_bg_div);
+
+         // Set a style for the spinner
+         $(spin_div).css({
+         	'position': 'fixed',
+         	'top': '50%',
+         	'left': '50%',
+         	'z-index': '510',
+         	'padding': '26px',
+         	'-moz-border-radius': '4px',
+         	'-webkit-border-radius': '4px',
+         	'border-radius': '4px'
+         });
+         $(spin_bg_div).css({
+         	'position': 'fixed',
+         	'top': '0px',
+         	'left': '0px',
+         	'z-index': '500',
+         	'width': '100%',
+         	'height': '200%',
+         	'background-color': '#000',
+         	'opacity': '0.5',
+         	'filter': 'alpha(opacity=50)',
+         	'-ms-filter': "alpha(opacity=50)"
+         });
+
+         // Set options for the spinner
+         var opts = {
+         	'color': '#fff'
+         };
+
+         // Create the spinner
+         new Spin.Spinner(opts).spin(document.getElementById('kintone-spin'));
+     }
+
+     // Display the spinner
+     $('.kintone-spinner').show();
+ }
+
+ // Function to hide the spinner
+ function hideSpinner() {
+     // Hide the spinner
+     $('.kintone-spinner').hide();
+ }
+ 
+ function extend(obj, ext) {
+ 	Object.keys(ext).forEach(function (key) {
+ 		obj[key] = ext[key];
+ 	});
+ 	return obj;
+ } 
+ function makeDataTable(elm, opt) {
+ 	var auto_responsive = $(elm).data('auto-responsive');
+ 	var dom_normal = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+ 	var dom_separate = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+ 	var dom = $(elm).hasClass('is-separate') ? dom_separate : dom_normal;
+ 	var def = {
+ 		responsive: true,
+ 		autoWidth: false,
+ 		dom: dom,
+ 		language: {
+ 			search: "",
+ 			searchPlaceholder: "Type in to Search",
+ 			lengthMenu: "<span class='d-none d-sm-inline-block'>Show</span><div class='form-control-select'> _MENU_ </div>",
+ 			info: "_START_ -_END_ of _TOTAL_",
+ 			infoEmpty: "No records found",
+ 			infoFiltered: "( Total _MAX_  )",
+ 			paginate: {
+ 				"first": "First",
+ 				"last": "Last",
+ 				"next": "Next",
+ 				"previous": "Prev"
+ 			}
+ 		}
+ 	},
+ 	attr = opt ? extend(def, opt) : def;
+ 	attr = auto_responsive === false ? extend(attr, {
+ 		responsive: false
+ 	}) : attr;
+ 	return $(elm).DataTable(attr);
+ }
+</script>
+{% block export-js %}
+
+{% endblock export-js %}
 
 
-	{% block js %}
+{% block js %}
 
-	{% endblock js %}
+{% endblock js %}
 </body>
 
 </html>

@@ -691,18 +691,18 @@
 
   NioApp.init = function () {
     NioApp.coms.docReady.push(NioApp.OtherInit);
-    NioApp.coms.docReady.push(NioApp.Prettify);
-    NioApp.coms.docReady.push(NioApp.ColorBG);
-    NioApp.coms.docReady.push(NioApp.ColorTXT);
-    NioApp.coms.docReady.push(NioApp.Copied);
-    NioApp.coms.docReady.push(NioApp.Ani.init);
-    NioApp.coms.docReady.push(NioApp.TGL.init);
-    NioApp.coms.docReady.push(NioApp.BS.init);
-    NioApp.coms.docReady.push(NioApp.Validate.init);
-    NioApp.coms.docReady.push(NioApp.Picker.init);
-    NioApp.coms.docReady.push(NioApp.Addons.Init);
-    NioApp.coms.docReady.push(NioApp.Wizard);
-    NioApp.coms.winLoad.push(NioApp.ModeSwitch);
+    // NioApp.coms.docReady.push(NioApp.Prettify);
+    // NioApp.coms.docReady.push(NioApp.ColorBG);
+    // NioApp.coms.docReady.push(NioApp.ColorTXT);
+    // NioApp.coms.docReady.push(NioApp.Copied);
+    // NioApp.coms.docReady.push(NioApp.Ani.init);
+    // NioApp.coms.docReady.push(NioApp.TGL.init);
+    // NioApp.coms.docReady.push(NioApp.BS.init);
+    // NioApp.coms.docReady.push(NioApp.Validate.init);
+    // NioApp.coms.docReady.push(NioApp.Picker.init);
+    // NioApp.coms.docReady.push(NioApp.Addons.Init);
+    // NioApp.coms.docReady.push(NioApp.Wizard);
+    // NioApp.coms.winLoad.push(NioApp.ModeSwitch);
   };
 
   NioApp.init();

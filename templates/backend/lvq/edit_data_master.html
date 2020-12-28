@@ -1,0 +1,218 @@
+{% extends "backend/base.html" %}
+{% load static %}
+{% block content %}
+<div class="nk-block-head nk-block-head-sm">
+	<div class="nk-block-between">
+		<div class="nk-block-head-content">
+			<h3 class="nk-block-title page-title">Ubah Data Master</h3>
+			<div class="nk-block-des text-soft">
+				<p></p>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<div class="nk-block">
+	<div class="card card-preview">
+		<div class="card-inner">
+			
+			
+		</div>
+		<div class="card-body">
+			<form id="form-edit-manual" onsubmit="return false;">
+				{% csrf_token %}
+				<div class="row gy-4">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">AGE</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" id="input-manual-age" name="input-manual-age" value="{{ data.age }}" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">SEX</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.sex }}" id="input-manual-sex" name="input-manual-sex" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">STEROID</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.steroid }}" id="input-manual-steroid" name="input-manual-steroid" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">ANTIVIRALS</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.antivirals }}" id="input-manual-antivirals" name="input-manual-antivirals" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">FATIGUE</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.fatigue }}" id="input-manual-fatigue" name="input-manual-fatigue" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">MALAISE</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.malaise }}" id="input-manual-malaise" name="input-manual-malaise" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">ANOREXIA</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.anorexia }}" id="input-manual-anorexia" name="input-manual-anorexia" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">LIVER_BIG</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.liver_big }}" id="input-manual-liver_big" name="input-manual-liver_big" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">LIVER_FIRM</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.liver_firm }}" id="input-manual-liver_firm" name="input-manual-liver_firm" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">SPLEEN_PALPABLE</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.spleen_palpable }}" id="input-manual-spleen_palpable" name="input-manual-spleen_palpable" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">SPIDERS</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.spiders }}" id="input-manual-spiders" name="input-manual-spiders" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">ASCITES</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.ascites }}" id="input-manual-ascites" name="input-manual-ascites" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">VARICES</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.varices }}" id="input-manual-varices" name="input-manual-varices" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">BILIRUBIN</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.bilirubin }}" id="input-manual-bilirubin" name="input-manual-bilirubin" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">ALK_POSPHATE</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.alk_posphate }}" id="input-manual-alk_posphate" name="input-manual-alk_posphate" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">SGOT</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.sgot }}" id="input-manual-sgot" name="input-manual-sgot" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">ALBUMIN</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.albumin }}" id="input-manual-albumin" name="input-manual-albumin" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">PROTIME</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.protime }}" id="input-manual-protime" name="input-manual-protime" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">HISTOLOGY</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.histology }}" id="input-manual-histology" name="input-manual-histology" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label" for="default-01">CLASS</label>
+							<div class="form-control-wrap">
+								<input type="number" class="form-control input-manual" value="{{ data.kelas }}" id="input-manual-kelas" name="input-manual-kelas" placeholder="" required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary">Simpan data</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js %}
+<script>
+
+	$("#form-edit-manual").submit(function(event) {
+		event.preventDefault();
+		var URL = "{% url 'lvq/proses_edit_data_master' %}";
+		var data = new FormData($(this)[0]);
+		console.log(data);
+		axios.post(URL, data)
+		.then((res) => {
+			data = res.data;
+			console.log(data);
+		})
+		.catch(() => {
+
+		})
+		.then(() => {
+
+		})
+
+	});
+
+</script>
+{% endblock js %}

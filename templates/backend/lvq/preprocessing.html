@@ -65,9 +65,9 @@
 
 	var $dTablePreprocessing = makeDataTable('#table-preprocessing', {
 		"ajax": {
-            "url": '{% url "lvq/json_data_preprocessing" %}',
-            "dataSrc": "dataset"
-        },
+			"url": '{% url "lvq/json_data_preprocessing" %}',
+			"dataSrc": "dataset"
+		},
 		"scrollX": true,
 		"responsive": false,
 		"columns": [
@@ -104,10 +104,14 @@
 			response = resp.data;
 			console.log(response.success);
 			if (response.success == 1) {
-				alert('preprocessing berhasil');
 				$dTablePreprocessing.clear();
 				$dTablePreprocessing.rows.add(response.df_preprocessing);
 				$dTablePreprocessing.draw();
+				Swal.fire(
+					"Berhasil!", 
+					"Berhasil preprocessing data!", 
+					"success"
+					);
 			}
 
 		})
@@ -120,10 +124,13 @@
 			response = resp.data;
 			console.log(response.success);
 			if (response.success == 1) {
-				alert('data berhasil dihapus');
 				$dTablePreprocessing.clear();
 				$dTablePreprocessing.draw();
-
+				Swal.fire(
+					"Berhasil!", 
+					"Berhasil Menghapus data preprocessing!", 
+					"success"
+					);
 			}
 
 		})
