@@ -238,15 +238,18 @@
 		var URL = "{% url 'lvq/proses_tambah_data_master' %}";
 		var data = new FormData($(this)[0]);
 		console.log(data);
+		showSpinner();
+
 		axios.post(URL, data)
 		.then((res) => {
 			data = res.data;
-			console.log(data);
+			window.location.href= '{% url "lvq/data_master" %}';
 		})
 		.catch(() => {
 
 		})
 		.then(() => {
+			hideSpinner();
 
 		})
 

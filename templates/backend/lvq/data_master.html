@@ -126,5 +126,26 @@
 	function showEdit(id) {
 		window.location.href= "{% url 'lvq/edit_data_master' 12345 %}".replace(/12345/, ID.toString());
 	}
+
+	function showDelete(id) {
+		var URL = '{% url "lvq/proses_hapus_satu_data_master" %}';
+		var data = Qs.stringify({ 
+			id_data_master: id
+		});
+		showSpinner();
+
+		axios.post(URL, data)
+		.then(() => {
+			$dTableMaster.ajax.reload();
+
+		})
+		.catch(() => {
+
+		})
+		.then(() => {
+			hideSpinner();
+
+		})
+	}
 </script>
 {% endblock js %}

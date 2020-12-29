@@ -140,6 +140,22 @@ def proses_hapus_data_master(request):
     return JsonResponse(context, safe=False)
 
 
+@csrf_exempt
+def proses_hapus_satu_data_master(request):
+    QueryDict = request.POST
+    id_data_master = QueryDict.get('id_data_master')
+
+    data = Dataset.objects.get(pk=int(id_data_master))
+
+    data.delete()
+    success = 1
+    context = {
+        'success': success
+    }
+
+    return JsonResponse(context, safe=False)
+
+
 def preprocessing(request):
     dataset_preprocessing = DatasetPreprocessing.objects.all()
     context = {
