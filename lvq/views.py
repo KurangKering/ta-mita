@@ -96,7 +96,33 @@ def proses_import_data_master(request):
     raw_body = request.body.decode('utf-8')
     data_post = json.loads(raw_body)
 
-    import pdb; pdb.set_trace()
+    bulk_data = []
+    for row in data_post:
+        dataset = Dataset()
+        dataset.age = float(row['AGE'])
+        dataset.sex = float(row['SEX'])
+        dataset.steroid = float(row['STEROID'])
+        dataset.antivirals = float(row['ANTIVIRALS'])
+        dataset.fatigue = float(row['FATIGUE'])
+        dataset.malaise = float(row['MALAISE'])
+        dataset.anorexia = float(row['ANOREXIA'])
+        dataset.liver_big = float(row['LIVER BIG'])
+        dataset.liver_firm = float(row['LIVER FIRM'])
+        dataset.spleen_palpable = float(row['SPLEEN PALPABLE'])
+        dataset.spiders = float(row['SPIDERS'])
+        dataset.ascites = float(row['ASCITES'])
+        dataset.varices = float(row['VARICES'])
+        dataset.bilirubin = float(row['BILIRUBIN'])
+        dataset.alk_posphate = float(row['ALK POSPHATE'])
+        dataset.sgot = float(row['SGOT'])
+        dataset.albumin = float(row['ALBUMIN'])
+        dataset.protime = float(row['PROTIME'])
+        dataset.histology = float(row['HISTOLOGY'])
+        dataset.kelas = float(row['CLASS'])
+        bulk_data.append(dataset)
+
+    Dataset.objects.bulk_create(bulk_data)
+
     context = {
         'success': 1
     }
@@ -116,11 +142,57 @@ def edit_data_master(request, id_data=None):
 
 def proses_edit_data_master(request):
     QueryDict = request.POST
-    context = {
-        'success': 1
-    }
+    id_data_master = QueryDict.get('input-manual-id_data_master')
+    age = QueryDict.get('input-manual-age')
+    sex = QueryDict.get('input-manual-sex')
+    steroid = QueryDict.get('input-manual-steroid')
+    antivirals = QueryDict.get('input-manual-antivirals')
+    fatigue = QueryDict.get('input-manual-fatigue')
+    malaise = QueryDict.get('input-manual-malaise')
+    anorexia = QueryDict.get('input-manual-anorexia')
+    liver_big = QueryDict.get('input-manual-liver_big')
+    liver_firm = QueryDict.get('input-manual-liver_firm')
+    spleen_palpable = QueryDict.get('input-manual-spleen_palpable')
+    spiders = QueryDict.get('input-manual-spiders')
+    ascites = QueryDict.get('input-manual-ascites')
+    varices = QueryDict.get('input-manual-varices')
+    bilirubin = QueryDict.get('input-manual-bilirubin')
+    alk_posphate = QueryDict.get('input-manual-alk_posphate')
+    sgot = QueryDict.get('input-manual-sgot')
+    albumin = QueryDict.get('input-manual-albumin')
+    protime = QueryDict.get('input-manual-protime')
+    histology = QueryDict.get('input-manual-histology')
+    kelas = QueryDict.get('input-manual-kelas')
 
+    dataset = Dataset.objects.get(pk=id_data_master)
+    dataset.age = age
+    dataset.sex = sex
+    dataset.steroid = steroid
+    dataset.antivirals = antivirals
+    dataset.fatigue = fatigue
+    dataset.malaise = malaise
+    dataset.anorexia = anorexia
+    dataset.liver_big = liver_big
+    dataset.liver_firm = liver_firm
+    dataset.spleen_palpable = spleen_palpable
+    dataset.spiders = spiders
+    dataset.ascites = ascites
+    dataset.varices = varices
+    dataset.bilirubin = bilirubin
+    dataset.alk_posphate = alk_posphate
+    dataset.sgot = sgot
+    dataset.albumin = albumin
+    dataset.protime = protime
+    dataset.histology = histology
+    dataset.kelas = kelas
+    dataset.save()
+
+    success = 1
+    context = {
+        'success': success,
+    }
     return JsonResponse(context, safe=False)
+
 
 
 def proses_hapus_data_master(request):
@@ -186,6 +258,14 @@ def proses_preprocessing(request):
     dataset = Dataset.objects.all()
     df = pd.DataFrame(list(dataset.values()))
     df_normalisasi = normalisasi(df)
+
+    DatasetPreprocessing.objects.all().delete()
+    table_name = DatasetPreprocessing.objects.model._meta.db_table
+
+    sql = "DELETE FROM SQLite_sequence WHERE name='{}';".format(table_name)
+    with connection.cursor() as cursor:
+        cursor.execute(sql)
+        row = cursor.fetchone()
 
     model_instances = [DatasetPreprocessing(age=dataset.age,
                                             sex=dataset.sex,

@@ -21,6 +21,7 @@
 		<div class="card-body">
 			<form id="form-edit-manual" onsubmit="return false;">
 				{% csrf_token %}
+				<input type="hidden" name="input-manual-id_data_master" value="{{ data.id }}">
 				<div class="row gy-4">
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -199,17 +200,19 @@
 		event.preventDefault();
 		var URL = "{% url 'lvq/proses_edit_data_master' %}";
 		var data = new FormData($(this)[0]);
-		console.log(data);
+		showSpinner();
+
 		axios.post(URL, data)
 		.then((res) => {
 			data = res.data;
-			console.log(data);
 		})
 		.catch(() => {
 
 		})
 		.then(() => {
-
+			hideSpinner();
+			window.location.href= '{% url "lvq/data_master" %}';
+			
 		})
 
 	});

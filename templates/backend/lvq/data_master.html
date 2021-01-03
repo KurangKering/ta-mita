@@ -113,18 +113,22 @@
 			if (response.success == 1) {
 				$dTableMaster.clear();
 				$dTableMaster.draw();
-				Swal.fire(
-					"Berhasil!", 
-					"Berhasil Menghapus seluruh data master!", 
-					"success"
-					);
+				Swal.fire({
+					title: 'Berhasil',
+					text: "Berhasil Menghapus seluruh data master!" + id,
+					showConfirmButton: false,
+					timer: 2000,
+					icon: 'success',
+
+				})
+			
 			}
 
 		})
 	});
 
 	function showEdit(id) {
-		window.location.href= "{% url 'lvq/edit_data_master' 12345 %}".replace(/12345/, ID.toString());
+		window.location.href= "{% url 'lvq/edit_data_master' 12345 %}".replace(/12345/, id.toString());
 	}
 
 	function showDelete(id) {
@@ -137,6 +141,14 @@
 		axios.post(URL, data)
 		.then(() => {
 			$dTableMaster.ajax.reload();
+			Swal.fire({
+				title: 'Berhasil',
+				text: 'Berhasil menghapus data dengan id ' + id,
+				showConfirmButton: false,
+				timer: 2000,
+				icon: 'success',
+
+			})
 
 		})
 		.catch(() => {

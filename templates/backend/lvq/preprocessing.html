@@ -15,7 +15,7 @@
 				<div class="toggle-expand-content" data-content="pageMenu">
 					<ul class="nk-block-tools g-3">
 						
-						<li class="nk-block-tools-opt"><a href="#" id="btn-hapus-data-normalisasi" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Hapus seluruh data</span></a></li>
+						<!-- <li class="nk-block-tools-opt"><a href="#" id="btn-hapus-data-normalisasi" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Hapus seluruh data</span></a></li> -->
 						<li class="nk-block-tools-opt"><a href="#" id="btn-mulai-preprocessing" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Mulai Preprocessing</span></a></li>
 					</ul>
 				</div>
@@ -99,6 +99,7 @@
 
 	$("#btn-mulai-preprocessing").click(function(event) {
 		var URL = "{% url 'lvq/proses_preprocessing' %}";
+		showSpinner();
 		axios.get(URL)
 		.then((resp) => {
 			response = resp.data;
@@ -107,18 +108,30 @@
 				$dTablePreprocessing.clear();
 				$dTablePreprocessing.rows.add(response.df_preprocessing);
 				$dTablePreprocessing.draw();
-				Swal.fire(
-					"Berhasil!", 
-					"Berhasil preprocessing data!", 
-					"success"
-					);
+				Swal.fire({
+
+					title: "Berhasil!", 
+					text: "Berhasil preprocessing data!", 
+					icon: "success",
+					showConfirmButton: false,
+					timer: 2000,
+				}
+				);
 			}
 
 		})
+		.catch(() => {
+
+		})
+		.then(() => {
+			hideSpinner();
+
+		});
 	});
 
 	$("#btn-hapus-data-normalisasi").click(function(event) {
 		var URL = "{% url 'lvq/proses_hapus_data_preprocessing' %}";
+		showSpinner();
 		axios.get(URL)
 		.then((resp) => {
 			response = resp.data;
@@ -134,6 +147,12 @@
 			}
 
 		})
+		.catch(() => {
+
+		})
+		.then(() => {
+			hideSpinner();
+		});
 	});
 
 
