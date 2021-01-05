@@ -11,7 +11,7 @@ from .models import Dataset, DatasetPreprocessing
 from django.db import connection
 from .libraries.preprocessing import normalisasi
 from django.views.decorators.csrf import csrf_exempt
-
+from .libraries.lvq_factory import *
 # Create your views here.
 np.random.seed(0)
 
@@ -322,6 +322,7 @@ def proses_perbandingan_lvq(request):
     input_epochs = int(QueryDict.get('input-epochs'))
     input_data_uji = int(QueryDict.get('input-data_uji')) / 100
     input_learning_rate = float(QueryDict.get('input-learning_rate'))
+    input_window = float(QueryDict.get('input-window'))
 
     dataset = DatasetPreprocessing.objects.all()
     df_dataset = pd.DataFrame(list(dataset.values()))
@@ -336,12 +337,17 @@ def proses_perbandingan_lvq(request):
     y_train = y_train.sort_index()
     y_test = y_test.sort_index()
 
-
     trained_lvq2 = proses_pelatihan_lvq2(X, y, X_train, y_train, 
-        input_epochs, input_data_uji, input_learning_rate)
+        input_epochs, step=input_learning_rate, epsilon=input_window)
 
     trained_lvq21 = proses_pelatihan_lvq21(X, y, X_train, y_train, 
-        input_epochs, input_data_uji, input_learning_rate)
+        input_epochs, step=input_learning_rate, epsilon=input_window)
+
+    initial_weight_lvq2 = trained_lvq2.initial_weight.tolist()
+    initial_weight_lvq21 = trained_lvq21.initial_weight.tolist()
+
+    final_weight_lvq2 = trained_lvq2.weight.tolist()
+    final_weight_lvq21 = trained_lvq21.weight.tolist()
 
     hasil_prediksi_lvq2 = trained_lvq2.predict(X_test)
     hasil_prediksi_lvq21 = trained_lvq21.predict(X_test)
@@ -387,25 +393,13 @@ def proses_perbandingan_lvq(request):
         'kelas_data_uji_array': kelas_data_uji_array,
         'kelas_hasil_prediksi_lvq2': kelas_hasil_prediksi_lvq2,
         'kelas_hasil_prediksi_lvq21': kelas_hasil_prediksi_lvq21,
+        'initial_weight_lvq2': initial_weight_lvq2,
+        'initial_weight_lvq21': initial_weight_lvq21,
+        'final_weight_lvq2': final_weight_lvq2,
+        'final_weight_lvq21': final_weight_lvq21,
+
+
     }
     return JsonResponse(context, safe=False)
 
     
-def proses_pelatihan_lvq2(X, y, X_train, y_train, epochs, data_uji, learning_rate):
-
-    np.random.seed(0)
-    from neupy import algorithms
-    lvqnet2 = algorithms.LVQ2(
-        n_inputs=X.shape[1], n_classes=np.unique(y).size, verbose=False, step=learning_rate)
-    lvqnet2.train(X_train, y_train, epochs=int(epochs))
-    return lvqnet2
-
-
-def proses_pelatihan_lvq21(X, y, X_train, y_train, epochs, data_uji, learning_rate):
-    
-    np.random.seed(0)
-    from neupy import algorithms
-    lvqnet21 = algorithms.LVQ21(n_inputs=X.shape[1], n_classes=np.unique(y).size, 
-        verbose=False, step=learning_rate)
-    lvqnet21.train(X_train, y_train, epochs=int(epochs))
-    return lvqnet21 

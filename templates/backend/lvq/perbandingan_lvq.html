@@ -66,6 +66,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="form-label" for="full-name">Window</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="0.1" id="input-window" name="input-window">
+					</div>
+				</div>
+				<div class="form-group">
 					<button type="submit" class="btn btn-lg btn-primary" id="btn-mulai">Mulai</button>
 				</div>
 			</form>
@@ -109,6 +115,113 @@
 		</div>
 	</div>
 </div>
+<div class="nk-block show-hide-content">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Weight Awal</h5>
+			</div>
+			<table class="nowrap table" id="table-weight-awal" >
+				<thead>
+					<tr>
+						<th>X1</th>
+						<th>X2</th>
+						<th>X3</th>
+						<th>X4</th>
+						<th>X5</th>
+						<th>X6</th>
+						<th>X7</th>
+						<th>X8</th>
+						<th>X9</th>
+						<th>X10</th>
+						<th>X11</th>
+						<th>X12</th>
+						<th>X13</th>
+						<th>X14</th>
+						<th>X15</th>
+						<th>X16</th>
+						<th>X17</th>
+						<th>X18</th>
+						<th>X19</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="nk-block show-hide-content">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Weight Akhir LVQ 2</h5>
+			</div>
+			<table class="nowrap table" id="table-weight-akhir-lvq2" >
+				<thead>
+					<tr>
+						<th>X1</th>
+						<th>X2</th>
+						<th>X3</th>
+						<th>X4</th>
+						<th>X5</th>
+						<th>X6</th>
+						<th>X7</th>
+						<th>X8</th>
+						<th>X9</th>
+						<th>X10</th>
+						<th>X11</th>
+						<th>X12</th>
+						<th>X13</th>
+						<th>X14</th>
+						<th>X15</th>
+						<th>X16</th>
+						<th>X17</th>
+						<th>X18</th>
+						<th>X19</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="nk-block show-hide-content">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Weight Akhir LVQ 2.1</h5>
+			</div>
+			<table class="nowrap table" id="table-weight-akhir-lvq21" >
+				<thead>
+					<tr>
+						<th>X1</th>
+						<th>X2</th>
+						<th>X3</th>
+						<th>X4</th>
+						<th>X5</th>
+						<th>X6</th>
+						<th>X7</th>
+						<th>X8</th>
+						<th>X9</th>
+						<th>X10</th>
+						<th>X11</th>
+						<th>X12</th>
+						<th>X13</th>
+						<th>X14</th>
+						<th>X15</th>
+						<th>X16</th>
+						<th>X17</th>
+						<th>X18</th>
+						<th>X19</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
 <div class="nk-block show-hide-content">
 	<div class="card card-bordered h-100">
 		<div class="card-inner">
@@ -279,6 +392,93 @@
 
 		order : [],
 	});
+
+	var $dTableWeightAwal = makeDataTable('#table-weight-awal', {
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "title": "X1" },
+		{ "title": "X2" },
+		{ "title": "X3" },
+		{ "title": "X4" },
+		{ "title": "X5" },
+		{ "title": "X6" },
+		{ "title": "X7" },
+		{ "title": "X8" },
+		{ "title": "X9" },
+		{ "title": "X10" },
+		{ "title": "X11" },
+		{ "title": "X12" },
+		{ "title": "X13" },
+		{ "title": "X14" },
+		{ "title": "X15" },
+		{ "title": "X16" },
+		{ "title": "X17" },
+		{ "title": "X18" },
+		{ "title": "X19" },
+		],
+		"paging": false,
+
+		order : [],
+	});
+
+	var $dTableWeightAkhirLVQ2 = makeDataTable('#table-weight-akhir-lvq2', {
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "title": "X1" },
+		{ "title": "X2" },
+		{ "title": "X3" },
+		{ "title": "X4" },
+		{ "title": "X5" },
+		{ "title": "X6" },
+		{ "title": "X7" },
+		{ "title": "X8" },
+		{ "title": "X9" },
+		{ "title": "X10" },
+		{ "title": "X11" },
+		{ "title": "X12" },
+		{ "title": "X13" },
+		{ "title": "X14" },
+		{ "title": "X15" },
+		{ "title": "X16" },
+		{ "title": "X17" },
+		{ "title": "X18" },
+		{ "title": "X19" },
+		],
+		"paging": false,
+
+		order : [],
+	});
+
+	var $dTableWeightAkhirLVQ21 = makeDataTable('#table-weight-akhir-lvq21', {
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "title": "X1" },
+		{ "title": "X2" },
+		{ "title": "X3" },
+		{ "title": "X4" },
+		{ "title": "X5" },
+		{ "title": "X6" },
+		{ "title": "X7" },
+		{ "title": "X8" },
+		{ "title": "X9" },
+		{ "title": "X10" },
+		{ "title": "X11" },
+		{ "title": "X12" },
+		{ "title": "X13" },
+		{ "title": "X14" },
+		{ "title": "X15" },
+		{ "title": "X16" },
+		{ "title": "X17" },
+		{ "title": "X18" },
+		{ "title": "X19" },
+		],
+		"paging": false,
+
+		order : [],
+	});
 	var $dTableHasilLvq = makeDataTable('#table-hasil-lvq', {
 		"scrollX": true,
 		"columns": [
@@ -316,18 +516,39 @@
 
 		axios.post(URL, data)
 		.then((res) => {
+			$('.show-hide-content').css({'display': 'block'});
+			
 			data = res.data;
 			$dTableDataLatih.clear();
 			$dTableDataLatih.rows.add(data.data_latih);
 			$dTableDataLatih.draw();
+			$dTableDataLatih.columns.adjust().draw();
 
 			$dTableDataUji.clear();
 			$dTableDataUji.rows.add(data.data_uji);
 			$dTableDataUji.draw();
+			$dTableDataUji.columns.adjust().draw();
 
 			$dTableHasilLvq.clear();
 			$dTableHasilLvq.rows.add(data.table_hasil_lvq);
 			$dTableHasilLvq.draw();
+			$dTableHasilLvq.columns.adjust().draw();
+
+			$dTableWeightAwal.clear();
+			$dTableWeightAwal.rows.add(data.initial_weight_lvq2);
+			$dTableWeightAwal.draw();
+			$dTableWeightAwal.columns.adjust().draw();
+
+			$dTableWeightAkhirLVQ2.clear();
+			$dTableWeightAkhirLVQ2.rows.add(data.final_weight_lvq2);
+			$dTableWeightAkhirLVQ2.draw();
+			$dTableWeightAkhirLVQ2.columns.adjust().draw();
+
+
+			$dTableWeightAkhirLVQ21.clear();
+			$dTableWeightAkhirLVQ21.rows.add(data.final_weight_lvq21);
+			$dTableWeightAkhirLVQ21.draw();
+			$dTableWeightAkhirLVQ21.columns.adjust().draw();
 
 			$("#total-data-uji").text(data.total_data_uji);
 			$("#total-benar-lvq2").text(data.total_benar_lvq2);
@@ -349,7 +570,6 @@
 				dataChartPrediksi.datasets[i].data = datasets[i];
 			}
 			chartPrediksi();
-			$('.show-hide-content').css({'display': 'block'});
 
 		})
 		.catch(() => {
