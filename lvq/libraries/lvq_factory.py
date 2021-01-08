@@ -1,4 +1,4 @@
-from . import algorithm
+from .lvq import algorithm
 import numpy as np
 np.random.seed(0)
 

@@ -323,6 +323,8 @@ def proses_perbandingan_lvq(request):
     input_data_uji = int(QueryDict.get('input-data_uji')) / 100
     input_learning_rate = float(QueryDict.get('input-learning_rate'))
     input_window = float(QueryDict.get('input-window'))
+    input_pengurangan_learning_rate = float(QueryDict.get('input-pengurangan_learning_rate'))
+    input_minimum_learning_rate = float(QueryDict.get('input-minimum_learning_rate'))
 
     dataset = DatasetPreprocessing.objects.all()
     df_dataset = pd.DataFrame(list(dataset.values()))
@@ -338,10 +340,10 @@ def proses_perbandingan_lvq(request):
     y_test = y_test.sort_index()
 
     trained_lvq2 = proses_pelatihan_lvq2(X, y, X_train, y_train, 
-        input_epochs, step=input_learning_rate, epsilon=input_window)
+        input_epochs, step=input_learning_rate, epsilon=input_window, pengurangan_step=input_pengurangan_learning_rate, minstep=input_minimum_learning_rate)
 
     trained_lvq21 = proses_pelatihan_lvq21(X, y, X_train, y_train, 
-        input_epochs, step=input_learning_rate, epsilon=input_window)
+        input_epochs, step=input_learning_rate, epsilon=input_window,pengurangan_step=input_pengurangan_learning_rate, minstep=input_minimum_learning_rate)
 
     initial_weight_lvq2 = trained_lvq2.initial_weight.tolist()
     initial_weight_lvq21 = trained_lvq21.initial_weight.tolist()

@@ -32,6 +32,7 @@
 			<div class="card-head">
 				<h5 class="card-title">Parameter</h5>
 			</div>
+			
 			<form id="form-parameter" onsubmit="return false;">
 				{% csrf_token %}
 				<div class="form-group">
@@ -63,6 +64,18 @@
 					<label class="form-label" for="full-name">Learning Rate</label>
 					<div class="form-control-wrap">
 						<input type="decimal" class="form-control" required="" value="0.1" id="input-learning_rate" name="input-learning_rate">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Pengurangan Learning Rate</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="0" id="input-pengurangan_learning_rate" name="input-pengurangan_learning_rate">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Minimum Learning Rate</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="0.1" id="input-minimum_learning_rate" name="input-minimum_learning_rate">
 					</div>
 				</div>
 				<div class="form-group">
