@@ -496,6 +496,8 @@
 	$("#btn-pelatihan-lvq").click(function(event) {
 		var URL = "{% url 'lvq/pelatihan_lvq' %}";
 		showSpinner();
+		$('.show-hide-content').css({'display': 'none'});
+
 
 		axios.get(URL)
 		.then((res) => {
@@ -517,6 +519,7 @@
 		})
 		.then(() => {
 			hideSpinner();
+			$('.show-hide-content').css({'display': 'block'});
 
 
 		});
