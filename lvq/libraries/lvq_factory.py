@@ -22,3 +22,19 @@ def proses_pelatihan_lvq21(X, y, X_train, y_train, epochs, **options):
     lvqnet21.train(X_train, y_train, epochs=int(epochs))
     
     return lvqnet21 
+
+def proses_testing_lvq2(X, y, data_testing, **options):
+
+    np.random.seed(0)
+    lvqnet2 = algorithm.LVQ2(
+        n_inputs=X.shape[1], n_classes=np.unique(y).size, verbose=False, **options)
+
+    return lvqnet2.predict(data_testing)
+
+def proses_testing_lvq21(X, y, data_testing, **options):
+
+    np.random.seed(0)
+    lvqnet21 = algorithm.LVQ21(
+        n_inputs=X.shape[1], n_classes=np.unique(y).size, verbose=False, **options)
+
+    return lvqnet21.predict(data_testing)

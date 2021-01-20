@@ -21,7 +21,7 @@
 		<div class="card-body">
 			<form id="form-edit-manual" onsubmit="return false;">
 				{% csrf_token %}
-				<input type="hidden" name="input-manual-id_data_master" value="{{ data.id }}">
+				<input type="hidden" name="input-manual-id_data_awal" value="{{ data.id }}">
 				<div class="row gy-4">
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -198,7 +198,7 @@
 
 	$("#form-edit-manual").submit(function(event) {
 		event.preventDefault();
-		var URL = "{% url 'lvq/proses_edit_data_master' %}";
+		var URL = "{% url 'lvq/proses_edit_data_awal' %}";
 		var data = new FormData($(this)[0]);
 		showSpinner();
 
@@ -211,7 +211,7 @@
 		})
 		.then(() => {
 			hideSpinner();
-			window.location.href= '{% url "lvq/data_master" %}';
+			window.location.href= '{% url "lvq/data_awal" %}';
 			
 		})
 

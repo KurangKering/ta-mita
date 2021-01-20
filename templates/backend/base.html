@@ -54,9 +54,9 @@
 									</a>
 								</li>
 								<li class="nk-menu-item">
-									<a href="{% url 'lvq/data_master' %}" class="nk-menu-link">
+									<a href="{% url 'lvq/inisialisasi_data_awal' %}" class="nk-menu-link">
 										<span class="nk-menu-icon"><em class="icon ni ni-circle"></em></span>
-										<span class="nk-menu-text">Data Master</span>
+										<span class="nk-menu-text">Inisialisasi & Data</span>
 									</a>
 								</li>
 								<li class="nk-menu-item">
@@ -66,11 +66,18 @@
 									</a>
 								</li>
 								<li class="nk-menu-item">
-									<a href="{% url 'lvq/perbandingan_lvq' %}" class="nk-menu-link">
+									<a href="{% url 'lvq/training_data' %}" class="nk-menu-link">
 										<span class="nk-menu-icon"><em class="icon ni ni-circle"></em></span>
-										<span class="nk-menu-text">Perbandingan LVQ</span>
+										<span class="nk-menu-text">Training Data</span>
 									</a>
 								</li>
+								<li class="nk-menu-item">
+									<a href="{% url 'lvq/testing_data' %}" class="nk-menu-link">
+										<span class="nk-menu-icon"><em class="icon ni ni-circle"></em></span>
+										<span class="nk-menu-text">Testing Data</span>
+									</a>
+								</li>
+							
 							</ul><!-- .nk-menu -->
 						</div><!-- .nk-sidebar-menu -->
 					</div><!-- .nk-sidebar-content -->
@@ -191,6 +198,10 @@
 	<script src="{% static 'plugins/axios/axios.min.js' %}"></script>
 	<script  src="{% static 'plugins/spinjs/spin.umd.js' %}"></script>
 	<script src="{% static 'plugins/qs.js' %}"></script>
+	<script>
+		axios.defaults.xsrfCookieName = 'csrftoken'
+		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+	</script>
 	{% block export-js %}
 
 	{% endblock export-js %}

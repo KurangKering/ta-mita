@@ -1,0 +1,252 @@
+{% extends "backend/base.html" %}
+{% load static %}
+{% block content %}
+<div class="nk-block-head nk-block-head-sm">
+	<div class="nk-block-between">
+		<div class="nk-block-head-content">
+			<h3 class="nk-block-title page-title">Inisialisasi & Data Awal</h3>
+			<div class="nk-block-des text-soft">
+				<p></p>
+			</div>
+		</div>
+		<div class="nk-block-head-content">
+			<div class="toggle-wrap nk-block-tools-toggle">
+				<a href="{% static 'dash/#' %}" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+				<div class="toggle-expand-content" data-content="pageMenu"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="nk-block">
+	<div class="card card-primary">
+		<div class="card-header">
+			<div class="card-title-group align-start">
+				<div class="card-title mt-2">
+					<h6 class="title">Inisialisasi</h6>
+				</div>
+				<div class="card-tools">
+					
+				</div>
+			</div>
+		</div>	
+		<div class="card-inner">
+			<form id="form-parameter" onsubmit="return false;">
+				{% csrf_token %}
+				<div class="form-group">
+					<label class="form-label" for="full-name">Epochs</label>
+					<div class="form-control-wrap">
+						<input type="number" class="form-control" id="input-epochs" required="" value="{{ parameters.epochs }}" name="input-epochs">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Jumlah Persen Data Uji</label>
+					<div class="form-control-wrap">
+						<input type="number" class="form-control" id="input-persen_uji" required="" value="{{ parameters.persen_uji }}" name="input-persen_uji">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="form-label" for="full-name">Learning Rate</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="{{ parameters.lr }}" id="input-lr" name="input-lr">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Pengurangan Learning Rate</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="{{ parameters.pengurangan_lr }}" id="input-pengurangan_lr" name="input-pengurangan_lr">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Minimum Learning Rate</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="{{ parameters.minimum_lr }}" id="input-minimum_lr" name="input-minimum_lr">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="full-name">Window</label>
+					<div class="form-control-wrap">
+						<input type="decimal" class="form-control" required="" value="{{ parameters.window }}" id="input-window" name="input-window">
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-lg btn-primary" id="btn-simpan-inisialisasi">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="card card-primary">
+		<div class="card-header">
+			<div class="card-title-group align-start">
+				<div class="card-title mt-2">
+					<h6 class="title">Data Awal</h6>
+				</div>
+				<div class="card-tools">
+					<ul class="nk-block-tools g-3">
+						
+						<li class="nk-block-tools-opt"><a href="#" id="btn-hapus-data-master" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Hapus seluruh data</span></a></li>
+
+						<li class="nk-block-tools-opt"><a href="{% url 'lvq/tambah_data_awal' %}" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Tambah Data</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		<div class="card-inner">
+
+			<table class="nowrap table" id="table-master" >
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>AGE</th>
+						<th>SEX</th>
+						<th>STEROID</th>
+						<th>ANTIVIRALS</th>
+						<th>FATIGUE</th>
+						<th>MALAISE</th>
+						<th>ANOREXIA</th>
+						<th>LIVER BIG</th>
+						<th>LIVER FIRM</th>
+						<th>SPLEEN PALPABLE</th>
+						<th>SPIDERS</th>
+						<th>ASCITES</th>
+						<th>VARICES</th>
+						<th>BILIRUBIN</th>
+						<th>ALK POSPHATE</th>
+						<th>SGOT</th>
+						<th>ALBUMIN</th>
+						<th>PROTIME</th>
+						<th>HISTOLOGY</th>
+						<th>CLASS</th>
+						<th>ACTION</th>
+					</tr>
+				</thead>
+				
+			</table>
+		</div>
+	</div>
+	
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+
+
+	var $dTableMaster = makeDataTable('#table-master', {
+		"ajax": {
+			"url": '{% url "lvq/json_data_awal" %}',
+			"dataSrc": "dataset"
+		},
+		"scrollX": true,
+		"responsive": false,
+		"columns": [
+		{ "data": "id" },
+		{ "data": "age" },
+		{ "data": "sex" },
+		{ "data": "steroid" },
+		{ "data": "antivirals" },
+		{ "data": "fatigue" },
+		{ "data": "malaise" },
+		{ "data": "anorexia" },
+		{ "data": "liver_big" },
+		{ "data": "liver_firm" },
+		{ "data": "spleen_palpable" },
+		{ "data": "spiders" },
+		{ "data": "ascites" },
+		{ "data": "varices" },
+		{ "data": "bilirubin" },
+		{ "data": "alk_posphate" },
+		{ "data": "sgot" },
+		{ "data": "albumin" },
+		{ "data": "protime" },
+		{ "data": "histology" },
+		{ "data": "kelas" },
+		{ 
+			"data": "action",
+			"render": function(data, type, row, meta) {
+				return '<button type="button" class="btn btn-secondary btn-edit" onclick="showEdit('+row.id+')">Edit</button>  <button type="button" class="btn btn-danger btn-hapus" onclick="showDelete('+row.id+')">Hapus</button>';
+
+			}
+		},
+		],
+		pageLength: 5,
+	});
+
+	$("#btn-hapus-data-master").click(function(event) {
+		var URL = "{% url 'lvq/proses_hapus_data_awal' %}";
+		axios.get(URL)
+		.then((resp) => {
+			response = resp.data;
+			console.log(response.success);
+			if (response.success == 1) {
+				$dTableMaster.clear();
+				$dTableMaster.draw();
+				Swal.fire({
+					title: 'Berhasil',
+					text: "Berhasil Menghapus seluruh data master!" + id,
+					showConfirmButton: false,
+					timer: 2000,
+					icon: 'success',
+
+				})
+
+			}
+
+		})
+	});
+	$("#form-parameter").submit(function(e) {
+		e.preventDefault();
+		var URL = "{% url 'lvq/simpan_inisialisasi' %}";
+		var data = new FormData($(this)[0]);
+		showSpinner();
+		$('.show-hide-content').css({'display': 'none'});
+
+		axios.post(URL, data)
+		.then((res) => {
+			data = res.data;
+			if (data.success == 1) {
+
+			}
+		})
+		.catch(() => {
+
+		})
+		.then(() => {
+			hideSpinner();
+
+
+		})
+	});
+	function showEdit(id) {
+		window.location.href= "{% url 'lvq/edit_data_awal' 12345 %}".replace(/12345/, id.toString());
+	}
+
+	function showDelete(id) {
+		var URL = '{% url "lvq/proses_hapus_satu_data_awal" %}';
+		var data = Qs.stringify({ 
+			id_data_awal: id
+		});
+		showSpinner();
+
+		axios.post(URL, data)
+		.then(() => {
+			$dTableMaster.ajax.reload();
+			Swal.fire({
+				title: 'Berhasil',
+				text: 'Berhasil menghapus data dengan id ' + id,
+				showConfirmButton: false,
+				timer: 2000,
+				icon: 'success',
+
+			})
+
+		})
+		.catch(() => {
+
+		})
+		.then(() => {
+			hideSpinner();
+
+		})
+	}
+</script>
+{% endblock js %}

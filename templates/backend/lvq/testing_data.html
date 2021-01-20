@@ -11,7 +11,7 @@
 <div class="nk-block-head nk-block-head-sm">
 	<div class="nk-block-between">
 		<div class="nk-block-head-content">
-			<h3 class="nk-block-title page-title">Perbandingan LVQ 2.0 dan LVQ 2.1</h3>
+			<h3 class="nk-block-title page-title">Testing LVQ 2.0 dan LVQ 2.1</h3>
 			<div class="nk-block-des text-soft"></div>
 		</div>
 		<div class="nk-block-head-content">
@@ -26,71 +26,122 @@
 		</div>
 	</div>
 </div>
-<div class="nk-block">
+<div class="nk-block ">
 	<div class="card card-bordered h-100">
 		<div class="card-inner">
-			<div class="card-head">
-				<h5 class="card-title">Parameter</h5>
-			</div>
-			
-			<form id="form-parameter" onsubmit="return false;">
-				{% csrf_token %}
-				<div class="form-group">
-					<label class="form-label" for="full-name">Epochs</label>
-					<div class="form-control-wrap">
-						<input type="number" class="form-control" id="input-epochs" required="" value="10" name="input-epochs">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="form-label" for="full-name">Jumlah Persen Data Uji</label>
-							<div class="form-control-wrap">
-								<input type="number" class="form-control" id="input-data_uji" required="" value="10" name="input-data_uji">
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="form-label" for="full-name">Total Seluruh Data</label>
-							<div class="form-control-wrap">
-								<input type="number" class="form-control" id="total-seluruh-data" disabled="" readonly="" value="{{ total_seluruh_data }}" name="">
-							</div>
-						</div>
-					</div>
-					
-				</div>
-				<div class="form-group">
-					<label class="form-label" for="full-name">Learning Rate</label>
-					<div class="form-control-wrap">
-						<input type="decimal" class="form-control" required="" value="0.1" id="input-learning_rate" name="input-learning_rate">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="form-label" for="full-name">Pengurangan Learning Rate</label>
-					<div class="form-control-wrap">
-						<input type="decimal" class="form-control" required="" value="0" id="input-pengurangan_learning_rate" name="input-pengurangan_learning_rate">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="form-label" for="full-name">Minimum Learning Rate</label>
-					<div class="form-control-wrap">
-						<input type="decimal" class="form-control" required="" value="0.1" id="input-minimum_learning_rate" name="input-minimum_learning_rate">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="form-label" for="full-name">Window</label>
-					<div class="form-control-wrap">
-						<input type="decimal" class="form-control" required="" value="0.1" id="input-window" name="input-window">
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-lg btn-primary" id="btn-mulai">Mulai</button>
-				</div>
-			</form>
+			<button class="btn btn-block btn-info" id="btn-mulai">Mulai Test</button>
 		</div>
 	</div>
 	
+</div>
+<div class="nk-block ">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Table Data Uji</h5>
+			</div>
+			<table class="nowrap table" id="table-data-uji" >
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>AGE</th>
+						<th>SEX</th>
+						<th>STEROID</th>
+						<th>ANTIVIRALS</th>
+						<th>FATIGUE</th>
+						<th>MALAISE</th>
+						<th>ANOREXIA</th>
+						<th>LIVER BIG</th>
+						<th>LIVER FIRM</th>
+						<th>SPLEEN PALPABLE</th>
+						<th>SPIDERS</th>
+						<th>ASCITES</th>
+						<th>VARICES</th>
+						<th>BILIRUBIN</th>
+						<th>ALK POSPHATE</th>
+						<th>SGOT</th>
+						<th>ALBUMIN</th>
+						<th>PROTIME</th>
+						<th>HISTOLOGY</th>
+						<th>CLASS</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+<div class="nk-block ">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Bobot Terbaik LVQ 2</h5>
+			</div>
+			<table class="nowrap table" id="table-weight-akhir-lvq2" >
+				<thead>
+					<tr>
+						<th>X1</th>
+						<th>X2</th>
+						<th>X3</th>
+						<th>X4</th>
+						<th>X5</th>
+						<th>X6</th>
+						<th>X7</th>
+						<th>X8</th>
+						<th>X9</th>
+						<th>X10</th>
+						<th>X11</th>
+						<th>X12</th>
+						<th>X13</th>
+						<th>X14</th>
+						<th>X15</th>
+						<th>X16</th>
+						<th>X17</th>
+						<th>X18</th>
+						<th>X19</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="nk-block ">
+	<div class="card card-bordered h-100">
+		<div class="card-inner">
+			<div class="card-head">
+				<h5 class="card-title">Bobot Terbaik LVQ 2.1</h5>
+			</div>
+			<table class="nowrap table" id="table-weight-akhir-lvq21" >
+				<thead>
+					<tr>
+						<th>X1</th>
+						<th>X2</th>
+						<th>X3</th>
+						<th>X4</th>
+						<th>X5</th>
+						<th>X6</th>
+						<th>X7</th>
+						<th>X8</th>
+						<th>X9</th>
+						<th>X10</th>
+						<th>X11</th>
+						<th>X12</th>
+						<th>X13</th>
+						<th>X14</th>
+						<th>X15</th>
+						<th>X16</th>
+						<th>X17</th>
+						<th>X18</th>
+						<th>X19</th>
+
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
 </div>
 <div class="nk-block show-hide-content">
 	<div class="card card-bordered h-100">
@@ -132,113 +183,6 @@
 	<div class="card card-bordered h-100">
 		<div class="card-inner">
 			<div class="card-head">
-				<h5 class="card-title">Weight Awal</h5>
-			</div>
-			<table class="nowrap table" id="table-weight-awal" >
-				<thead>
-					<tr>
-						<th>X1</th>
-						<th>X2</th>
-						<th>X3</th>
-						<th>X4</th>
-						<th>X5</th>
-						<th>X6</th>
-						<th>X7</th>
-						<th>X8</th>
-						<th>X9</th>
-						<th>X10</th>
-						<th>X11</th>
-						<th>X12</th>
-						<th>X13</th>
-						<th>X14</th>
-						<th>X15</th>
-						<th>X16</th>
-						<th>X17</th>
-						<th>X18</th>
-						<th>X19</th>
-
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-</div>
-
-<div class="nk-block show-hide-content">
-	<div class="card card-bordered h-100">
-		<div class="card-inner">
-			<div class="card-head">
-				<h5 class="card-title">Weight Akhir LVQ 2</h5>
-			</div>
-			<table class="nowrap table" id="table-weight-akhir-lvq2" >
-				<thead>
-					<tr>
-						<th>X1</th>
-						<th>X2</th>
-						<th>X3</th>
-						<th>X4</th>
-						<th>X5</th>
-						<th>X6</th>
-						<th>X7</th>
-						<th>X8</th>
-						<th>X9</th>
-						<th>X10</th>
-						<th>X11</th>
-						<th>X12</th>
-						<th>X13</th>
-						<th>X14</th>
-						<th>X15</th>
-						<th>X16</th>
-						<th>X17</th>
-						<th>X18</th>
-						<th>X19</th>
-
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-</div>
-<div class="nk-block show-hide-content">
-	<div class="card card-bordered h-100">
-		<div class="card-inner">
-			<div class="card-head">
-				<h5 class="card-title">Weight Akhir LVQ 2.1</h5>
-			</div>
-			<table class="nowrap table" id="table-weight-akhir-lvq21" >
-				<thead>
-					<tr>
-						<th>X1</th>
-						<th>X2</th>
-						<th>X3</th>
-						<th>X4</th>
-						<th>X5</th>
-						<th>X6</th>
-						<th>X7</th>
-						<th>X8</th>
-						<th>X9</th>
-						<th>X10</th>
-						<th>X11</th>
-						<th>X12</th>
-						<th>X13</th>
-						<th>X14</th>
-						<th>X15</th>
-						<th>X16</th>
-						<th>X17</th>
-						<th>X18</th>
-						<th>X19</th>
-
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-</div>
-
-<div class="nk-block show-hide-content">
-	<div class="card card-bordered h-100">
-		<div class="card-inner">
-			<div class="card-head">
 				<h5 class="card-title">Detail Hasil Klasifikasi LVQ 2 & LVQ 2.1</h5>
 			</div>
 			<table class="nowrap table" id="table-hasil-lvq" >
@@ -257,127 +201,22 @@
 	
 </div>
 
-<div class="nk-block show-hide-content">
-	<div class="card card-bordered h-100">
-		<div class="card-inner">
-			<div class="card-head">
-				<h5 class="card-title">Table Data Latih</h5>
-			</div>
-			<table class="nowrap table" id="table-data-latih" >
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>AGE</th>
-						<th>SEX</th>
-						<th>STEROID</th>
-						<th>ANTIVIRALS</th>
-						<th>FATIGUE</th>
-						<th>MALAISE</th>
-						<th>ANOREXIA</th>
-						<th>LIVER BIG</th>
-						<th>LIVER FIRM</th>
-						<th>SPLEEN PALPABLE</th>
-						<th>SPIDERS</th>
-						<th>ASCITES</th>
-						<th>VARICES</th>
-						<th>BILIRUBIN</th>
-						<th>ALK POSPHATE</th>
-						<th>SGOT</th>
-						<th>ALBUMIN</th>
-						<th>PROTIME</th>
-						<th>HISTOLOGY</th>
-						<th>CLASS</th>
 
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-	
-</div>
-<div class="nk-block show-hide-content">
-	<div class="card card-bordered h-100">
-		<div class="card-inner">
-			<div class="card-head">
-				<h5 class="card-title">Table Data Uji</h5>
-			</div>
-			<table class="nowrap table" id="table-data-uji" >
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>AGE</th>
-						<th>SEX</th>
-						<th>STEROID</th>
-						<th>ANTIVIRALS</th>
-						<th>FATIGUE</th>
-						<th>MALAISE</th>
-						<th>ANOREXIA</th>
-						<th>LIVER BIG</th>
-						<th>LIVER FIRM</th>
-						<th>SPLEEN PALPABLE</th>
-						<th>SPIDERS</th>
-						<th>ASCITES</th>
-						<th>VARICES</th>
-						<th>BILIRUBIN</th>
-						<th>ALK POSPHATE</th>
-						<th>SGOT</th>
-						<th>ALBUMIN</th>
-						<th>PROTIME</th>
-						<th>HISTOLOGY</th>
-						<th>CLASS</th>
 
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-	
-</div>
 
 {% endblock content %}
 {% block js %}
 <script>
 
-	var total_seluruh_data = '{{ total_seluruh_data }}';
-
-	if (parseInt(total_seluruh_data) < 1 ) {
-		Swal.fire("Gagal!", "Mohon preprocessing data terlebih dahulu!", "error")
-		.then(() => {
-			window.location.href = "{% url 'lvq/preprocessing'  %}";
-		})
-		;
-	}
-	var $dTableDataLatih = makeDataTable('#table-data-latih', {
-		"scrollX": true,
-		"columns": [
-		{ "data": "id" },
-		{ "data": "age" },
-		{ "data": "sex" },
-		{ "data": "steroid" },
-		{ "data": "antivirals" },
-		{ "data": "fatigue" },
-		{ "data": "malaise" },
-		{ "data": "anorexia" },
-		{ "data": "liver_big" },
-		{ "data": "liver_firm" },
-		{ "data": "spleen_palpable" },
-		{ "data": "spiders" },
-		{ "data": "ascites" },
-		{ "data": "varices" },
-		{ "data": "bilirubin" },
-		{ "data": "alk_posphate" },
-		{ "data": "sgot" },
-		{ "data": "albumin" },
-		{ "data": "protime" },
-		{ "data": "histology" },
-		{ "data": "kelas" },
-		],
-		pageLength: 5,
-
-		order : [],
-	});
+	
 	var $dTableDataUji = makeDataTable('#table-data-uji', {
 		"scrollX": true,
+		"responsive": false,
+		"ajax": {
+			"headers": { "X-CSRFToken": token },
+			"url": '{% url "lvq/generate_data_uji" %}',
+			"dataSrc": "data_uji"
+		},
 		"columns": [
 		{ "data": "id" },
 		{ "data": "age" },
@@ -406,38 +245,22 @@
 		order : [],
 	});
 
-	var $dTableWeightAwal = makeDataTable('#table-weight-awal', {
-		"scrollX": true,
-		"responsive": false,
-		"columns": [
-		{ "title": "X1" },
-		{ "title": "X2" },
-		{ "title": "X3" },
-		{ "title": "X4" },
-		{ "title": "X5" },
-		{ "title": "X6" },
-		{ "title": "X7" },
-		{ "title": "X8" },
-		{ "title": "X9" },
-		{ "title": "X10" },
-		{ "title": "X11" },
-		{ "title": "X12" },
-		{ "title": "X13" },
-		{ "title": "X14" },
-		{ "title": "X15" },
-		{ "title": "X16" },
-		{ "title": "X17" },
-		{ "title": "X18" },
-		{ "title": "X19" },
-		],
-		"paging": false,
-
-		order : [],
-	});
+	
+	var token = '{{csrf_token}}';
 
 	var $dTableWeightAkhirLVQ2 = makeDataTable('#table-weight-akhir-lvq2', {
 		"scrollX": true,
 		"responsive": false,
+		"ajax": {
+			"headers": { "X-CSRFToken": token },
+
+			"url": '{% url "lvq/generate_bobot_akhir" %}',
+			"type": "POST",
+			"data": {
+				"metode": "lvq2"
+			},
+			"dataSrc": "bobot_akhir"
+		},
 		"columns": [
 		{ "title": "X1" },
 		{ "title": "X2" },
@@ -467,6 +290,16 @@
 	var $dTableWeightAkhirLVQ21 = makeDataTable('#table-weight-akhir-lvq21', {
 		"scrollX": true,
 		"responsive": false,
+		"ajax": {
+			"headers": { "X-CSRFToken": token },
+
+			"url": '{% url "lvq/generate_bobot_akhir" %}',
+			"type": "POST",
+			"data": {
+				"metode": "lvq21"
+			},
+			"dataSrc": "bobot_akhir"
+		},
 		"columns": [
 		{ "title": "X1" },
 		{ "title": "X2" },
@@ -520,48 +353,22 @@
 
 	var labelsChart = [];
 	var datasets = [];
-	$("#form-parameter").submit(function(e) {
+	$("#btn-mulai").click(function(e) {
 		e.preventDefault();
-		var URL = "{% url 'lvq/proses_perbandingan_lvq' %}";
-		var data = new FormData($(this)[0]);
+		var URL = "{% url 'lvq/proses_testing_lvq' %}";
 		showSpinner();
 		$('.show-hide-content').css({'display': 'none'});
 
-		axios.post(URL, data)
+		axios.get(URL)
 		.then((res) => {
 			$('.show-hide-content').css({'display': 'block'});
 			
 			data = res.data;
-			$dTableDataLatih.clear();
-			$dTableDataLatih.rows.add(data.data_latih);
-			$dTableDataLatih.draw();
-			$dTableDataLatih.columns.adjust().draw();
-
-			$dTableDataUji.clear();
-			$dTableDataUji.rows.add(data.data_uji);
-			$dTableDataUji.draw();
-			$dTableDataUji.columns.adjust().draw();
 
 			$dTableHasilLvq.clear();
 			$dTableHasilLvq.rows.add(data.table_hasil_lvq);
 			$dTableHasilLvq.draw();
 			$dTableHasilLvq.columns.adjust().draw();
-
-			$dTableWeightAwal.clear();
-			$dTableWeightAwal.rows.add(data.initial_weight_lvq2);
-			$dTableWeightAwal.draw();
-			$dTableWeightAwal.columns.adjust().draw();
-
-			$dTableWeightAkhirLVQ2.clear();
-			$dTableWeightAkhirLVQ2.rows.add(data.final_weight_lvq2);
-			$dTableWeightAkhirLVQ2.draw();
-			$dTableWeightAkhirLVQ2.columns.adjust().draw();
-
-
-			$dTableWeightAkhirLVQ21.clear();
-			$dTableWeightAkhirLVQ21.rows.add(data.final_weight_lvq21);
-			$dTableWeightAkhirLVQ21.draw();
-			$dTableWeightAkhirLVQ21.columns.adjust().draw();
 
 			$("#total-data-uji").text(data.total_data_uji);
 			$("#total-benar-lvq2").text(data.total_benar_lvq2);

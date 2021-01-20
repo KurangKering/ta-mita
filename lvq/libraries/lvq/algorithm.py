@@ -280,6 +280,7 @@ class LVQ(BaseNetwork):
                                     self.n_classes - 1, target_classes))
 
             weights = []
+            indeces = []
             iterator = zip(target_classes, self.prototypes_per_class)
             for target_class, n_prototypes in iterator:
                 is_valid_class = (target_train[:, 0] == target_class)
@@ -300,9 +301,11 @@ class LVQ(BaseNetwork):
 
                 class_weight = input_train[class_weight_indeces]
                 weights.extend(class_weight)
+                indeces.append(class_weight_indeces)
 
             self.weight = np.array(weights)
             self.initial_weight = deepcopy(self.weight)
+            self.indeces = indeces
             self.initialized = True
 
         super(LVQ, self).train(input_train, target_train, *args, **kwargs)

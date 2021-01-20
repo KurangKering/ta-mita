@@ -272,7 +272,7 @@
 
 	$("#form-tambah-manual").submit(function(event) {
 		event.preventDefault();
-		var URL = "{% url 'lvq/proses_tambah_data_master' %}";
+		var URL = "{% url 'lvq/proses_tambah_data_awal' %}";
 		var data = new FormData($(this)[0]);
 		console.log(data);
 		showSpinner();
@@ -280,7 +280,7 @@
 		axios.post(URL, data)
 		.then((res) => {
 			data = res.data;
-			window.location.href= '{% url "lvq/data_master" %}';
+			window.location.href= '{% url "lvq/data_awal" %}';
 		})
 		.catch(() => {
 
@@ -316,7 +316,7 @@
 			})
 			$(".hide-me").hide();
 
-			var URL = '{% url "lvq/proses_import_data_master" %}';
+			var URL = '{% url "lvq/proses_import_data_awal" %}';
 			axios.post(URL, json_object)
 			.then((res) => {
 				data = res.data;

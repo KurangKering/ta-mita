@@ -346,6 +346,8 @@ class BaseNetwork(BaseSkeleton):
         logs = self.logs
         training = self.training = AttributeKeyDict()
 
+        self.epochs = epochs
+
         if epochs <= 0:
             raise ValueError("Number of epochs needs to be greater than 0.")
 
